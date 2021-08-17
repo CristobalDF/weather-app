@@ -1,0 +1,91 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Grid } from '@material-ui/core'
+import CityInfo from './../components/CityInfo'
+import Weather from './../components/Weather'
+import WeatherDetails from './../components/WeatherDetails'
+import Forecast from './../components/Forecast'
+import ForecastChart from './../components/ForecastChart'
+
+
+
+const dataExample = [
+    {
+        "dayHour": "Jue 18",
+        "min": 14,
+        "max": 22,
+    },
+    {
+        "dayHour": "Vie 06",
+        "min": 18,
+        "max": 27,
+    },
+    {
+        "dayHour": "Vie 12",
+        "min": 18,
+        "max": 28,
+    },
+    {
+        "dayHour": "Vie 18",
+        "min": 18,
+        "max": 25,
+    },
+    {
+        "dayHour": "Sab 06",
+        "min": 15,
+        "max": 22,
+    },
+    {
+        "dayHour": "Sab 12",
+        "min": 12,
+        "max": 19,
+    }
+]
+
+const forecastItemListExample = [
+	{ hour: 18, state:"sunny", temperature:17, weekDay:"Jueves" },
+	{ hour: 6, state:"cloud", temperature:18, weekDay:"Viernes" },
+	{ hour: 12, state:"fog", temperature:18, weekDay:"Viernes" },
+	{ hour: 18, state:"cloudy", temperature:19, weekDay:"Viernes" },
+	{ hour: 6, state:"rain", temperature:17, weekDay:"Sábado" },
+	{ hour: 12, state:"rain", temperature:17, weekDay:"Sábado" }, 
+]
+
+const CityPage = () => {
+    const city = "Santiago"
+    const country = "Chile"
+    const state = "rain"
+    const temperature = 18
+    const humidity = 66
+    const wind = 6
+    const data = dataExample
+    const forecastItemList = forecastItemListExample
+
+    return (
+        <Grid container
+            justify="space-around"
+            direction="column"
+            spacing={2}>
+            <Grid item container 
+                xs={12} 
+                justify="center"
+                alignItems="flex-end">
+                <CityInfo city={city} country={country} />
+            </Grid>
+            <Grid container item xs={12}
+                justify="center">
+                <Weather state={state} temperature={temperature} />
+                <WeatherDetails humidity={humidity} 
+                    wind={wind} />
+            </Grid>
+            <Grid item>
+                <ForecastChart data={data} />
+            </Grid>
+            <Grid item>
+                <Forecast forecastItemList={forecastItemList} />
+            </Grid>
+        </Grid>        
+    )
+}
+
+export default CityPage

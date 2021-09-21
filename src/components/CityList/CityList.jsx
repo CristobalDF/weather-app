@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
-import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import CityInfo from './../CityInfo'
 import Weather from './../Weather'

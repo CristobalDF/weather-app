@@ -46,19 +46,20 @@ const CityList = ({ cities, onClickCity }) => {
 
     useEffect(() => {
 
-        const setWeather  = (city, country) => {
+        const setWeather  = (city, country, countryCode) => {
            const appid = "0443061d390902238e43d4cf886f060f"
-           const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${appid}`
+           const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${appid}`
             axios
             .get(url)
             .then(response =>{
                 const {data} = response
                 const temperature = data.main.temp
-                const state = "sunny"
+                const state = data.weather[0].main.toLowerCase()
 
                 const propName = `${city}-${country}` //EJ: [Ciudad de México-México]
                 const propValue = { temperature, state} // EJ: temperature: 10, state: sunny
-
+                console.log('propValue: ', propValue);
+                console.log('propName: ', propName);
                 //Al hacer el destructuring de esta manera estamos desensamblar allWeather, 
                 /* 
                 allWeather primera pasada:
@@ -67,14 +68,14 @@ const CityList = ({ cities, onClickCity }) => {
                     [Buenos Aires-Argentina]: { temperature: 10, state: "sunny"},
                     [Santiago-Chile]: { temperature: 13, state: "sunny"},
                 */
-                setAllWeather({...allWeather, [propName]: propValue })
-            })
-        }
-        cities.forEach(({city, country}) => {
-            setWeather(city, country)
+                setAllWeather( allWeather => ({...allWeather, [propName]: propValue }))
+        })
+    }
+        cities.forEach(({city, country, countryCode}) => {
+            setWeather(city, country, countryCode)
         });
         
-    }, [cities, allWeather])
+    }, [cities])
 
     //const weather = {temperature: 10, state: "sunny"}
     return (
@@ -92,6 +93,7 @@ CityList.propTypes = {
         PropTypes.shape({
             city: PropTypes.string.isRequired,
             country: PropTypes.string.isRequired,
+            countryCode: PropTypes.string.isRequired,
         }).isRequired
     ),
     onClickCity: PropTypes.func.isRequired,

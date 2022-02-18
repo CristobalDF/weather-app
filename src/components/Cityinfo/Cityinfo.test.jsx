@@ -1,33 +1,32 @@
 import React from 'react'
-import {render} from '@testing-library/react'
-import CityInfo from './CityInfo' //SUT: subjet under testing
+import { render } from '@testing-library/react'
+import CityInfo from './CityInfo' // SUT: Subject under testing (objeto del testeo)
 
-
-
-test("CityInfo render", async () =>{
-    //Estándar AAA
-    //1. Arrange (Organizar)
-    //2. Act (Actuar Ejecutar)
-    //3. Assert (Confirmar que se retornara lo que esperabamos)
-
+test("CityInfo render", async () => {
+    // AAA
+    // Arrange 
+    // Act
     const city = "Santiago"
-    const country = "Chile"
+    const country = "Chili"
 
-    //Render:randeriza el componente y retorna una serie de funciones de utilidad.
+    // Render: renderiza el componente y retorna una serie de funciones de utilidad
+    // En este caso utilizamos "findAllByRole" para "consultar" a nuestro componente
+    // Vamos a analizar su estado en el "Assert"
+    const { findAllByRole } = render(<CityInfo city={city} country={country} />)
 
-    const {findAllByRole} = render(<CityInfo city={city} country={country}/>)//Encontrar todos los componentes que tengan determinado rol. findAllByRole
+    // Assert
+    // findAllByRole nos va a buscar (en este caso) todos los componentes que sean 
+    // "heading" => H1, H2, H3.. etc
+    // El resultado es un array de componentes (cityAndCountryComponents)
+    const cityAndCountryComponents = await findAllByRole("heading")
 
-    //Assert
-    //findAllByRole nos va a buscar en este caso todos los componentes que sean heading (h1, h2, h3)
-    const cityAndCountryComponent = await findAllByRole("heading")
+    // ¿Cuando el test va a ser correcto?
+    // DEfinición: 
+    // Cuando en el primer elemento (heading) se encuentre la ciudad "Buenos Aires"
+    // y cuando en el segundo elemento se encuentre el pais Argentina
 
-    //¿Cuando el test va a ser correcto?
-    //Cuando el primer elemento (heading) se encuentre la ciudad "Santiago"
-    // y cuando en el segundo elemento se encuentre el pais "Chile"
+    expect(cityAndCountryComponents[0]).toHaveTextContent(city)
+    expect(cityAndCountryComponents[1]).toHaveTextContent(country)
 
-    //toHaveTextContent comparador o "matcher", mas en https://jestjs.io/docs/next/expect
-    expect(cityAndCountryComponent[0]).toHaveTextContent(city)
-    expect(cityAndCountryComponent[1]).toHaveTextContent(country)
-
-    //Si estas condiciones se cumplen (expect), el test esta "OK"
+    // Si estas condiciones se cumplen (expect), el test esta "ok"
 })

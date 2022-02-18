@@ -1,14 +1,11 @@
 import React from 'react'
-import { Grid } from '@material-ui/core'
-import AppFrame from '../components/AppFrame'
-import { Paper } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
+import AppFrame from './../components/AppFrame'
 import CityInfo from './../components/CityInfo'
 import Weather from './../components/Weather'
 import WeatherDetails from './../components/WeatherDetails'
-import Forecast from './../components/Forecast'
 import ForecastChart from './../components/ForecastChart'
-
-
+import Forecast from './../components/Forecast'
 
 const dataExample = [
     {
@@ -53,42 +50,40 @@ const forecastItemListExample = [
 ]
 
 const CityPage = () => {
-    const city = "Santiago"
-    const country = "Chile"
-    const state = "rain"
-    const temperature = 18
-    const humidity = 66
-    const wind = 6
+    const city = "Buenos Aires"
+    const country = "Argentina"
+    const state = "cloudy"
+    const temperature = 20
+    const humidity = 80
+    const wind = 5
     const data = dataExample
     const forecastItemList = forecastItemListExample
 
     return (
         <AppFrame>
-            <Paper elevation={3} style={{marginTop:"2em", padding:"1em"}}>
-                <Grid container
-                    justify="space-around"
-                    direction="column"
-                    spacing={2}>
-                    <Grid item container 
-                        xs={12} 
-                        justify="center"
-                        alignItems="flex-end">
-                        <CityInfo city={city} country={country} />
-                    </Grid>
-                    <Grid container item xs={12}
-                        justify="center">
-                        <Weather state={state} temperature={temperature} />
-                        <WeatherDetails humidity={humidity} 
-                            wind={wind} />
-                    </Grid>
-                    <Grid item>
-                        <ForecastChart data={data} />
-                    </Grid>
-                    <Grid item>
-                        <Forecast forecastItemList={forecastItemList} />
-                    </Grid>
-                </Grid> 
-            </Paper>       
+            <Grid container
+                justify="space-around"
+                direction="column"
+                spacing={2}>
+                <Grid item container 
+                    xs={12} 
+                    justify="center"
+                    alignItems="flex-end">
+                    <CityInfo city={city} country={country} />
+                </Grid>
+                <Grid container item xs={12}
+                    justify="center">
+                    <Weather state={state} temperature={temperature} />
+                    <WeatherDetails humidity={humidity} 
+                        wind={wind} />
+                </Grid>
+                <Grid item>
+                    <ForecastChart data={data} />
+                </Grid>
+                <Grid item>
+                    <Forecast forecastItemList={forecastItemList} />
+                </Grid>
+            </Grid>        
         </AppFrame>
     )
 }

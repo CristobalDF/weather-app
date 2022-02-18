@@ -1,6 +1,6 @@
 import React from 'react'
-import { useHistory } from 'react-router'
-import { Paper} from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
 import AppFrame from './../components/AppFrame'
 import CityList from './../components/CityList'
 
@@ -20,11 +20,11 @@ const MainPage = () => {
         history.push("/city")
     }
 
-    return  (
+    return (
         <AppFrame>
-            <Paper elevation={3} style={{marginTop:"2em"}}>
-                <CityList
-                    cities={cities}
+            <Paper elevation={3}>
+                <CityList 
+                    cities={cities} 
                     onClickCity={onClickHandler} />
             </Paper>
         </AppFrame>

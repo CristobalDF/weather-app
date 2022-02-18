@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Typography } from '@material-ui/core'
-import { Grid } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
 import { IconContext } from 'react-icons'
 import IconState, { validValues } from './../IconState'
 
@@ -9,7 +9,7 @@ const ForecastItem = ({ weekDay, hour, state, temperature }) => {
     return (
         <Grid container
             direction="column"
-            justifyContent="center"
+            justify="center"
             alignItems="center">
             <Grid item>
                 <Typography>{weekDay}</Typography>
@@ -23,7 +23,7 @@ const ForecastItem = ({ weekDay, hour, state, temperature }) => {
                 </IconContext.Provider>
             </Grid>
             <Grid item>
-                <Typography>&nbsp;{temperature} °</Typography>
+                <Typography>{temperature} °</Typography>
             </Grid>
         </Grid>
     )

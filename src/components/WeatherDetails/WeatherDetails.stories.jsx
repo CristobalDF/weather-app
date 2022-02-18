@@ -1,7 +1,8 @@
 import React from 'react'
 import WeatherDetails from './WeatherDetails'
 
-export default{
+
+export default {
     title: "WeatherDetails",
     component: WeatherDetails
 }

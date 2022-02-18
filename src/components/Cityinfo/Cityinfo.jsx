@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Typography } from '@material-ui/core'
 
 
-const Cityinfo = ({ city, country }) => {
+const CityInfo = ({ city, country }) => {
     return (
         <>
             <Typography display="inline" variant="h4">{city}, </Typography>            
@@ -12,9 +12,9 @@ const Cityinfo = ({ city, country }) => {
     )
 }
 
-Cityinfo.propTypes = {
+CityInfo.propTypes = {
     city: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired
 }
 
-export default Cityinfo
+export default CityInfo

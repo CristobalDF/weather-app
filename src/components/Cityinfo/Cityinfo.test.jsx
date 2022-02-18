@@ -1,10 +1,10 @@
 import React from 'react'
 import {render} from '@testing-library/react'
-import CityInfo from './Cityinfo' //SUT: subjet under testing
+import CityInfo from './CityInfo' //SUT: subjet under testing
 
 
 
-test("Cityinfo render", async () =>{
+test("CityInfo render", async () =>{
     //Estándar AAA
     //1. Arrange (Organizar)
     //2. Act (Actuar Ejecutar)
